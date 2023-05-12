@@ -1,4 +1,6 @@
-export type GetFetchCoursesResponse = {
+import http from "../constant/api";
+
+export type GetFetchCoursesResponse = [{
   maKhoaHoc: string;
   biDanh: string;
   tenKhoaHoc: string;
@@ -18,12 +20,12 @@ export type GetFetchCoursesResponse = {
     maDanhMucKhoahoc: string;
     tenDanhMucKhoaHoc: string;
   };
-};
+}];
 
-export type GetFetchCategoryResponse = {
+export type GetFetchCategoryResponse = [{
     maDanhMuc: string,
     tenDanhMuc: string,
-};
+}];
 
 export type GetFetchCoursesByCategory = {
     maKhoaHoc: string;
@@ -69,4 +71,7 @@ export type GetFetchCoursesDetail = {
   };
 }
 
-export const quanLyKhoaHocServices = {};
+export const quanLyKhoaHocServices = {
+  FetchCategory: () => http.get<GetFetchCategoryResponse>(`QuanLyKhoaHoc/LayDanhMucKhoaHoc`),
+  FetchCourses: (query: string = '') => http.get<GetFetchCoursesResponse>(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${query}`),
+};

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, useRoutes } from 'react-router-dom'
 import MainLayout from '../layout/MainLayout'
+import Home from '../pages/Home'
 
 
 
@@ -11,8 +12,8 @@ const Router = (props: any) => {
             element: <MainLayout />,
             children: [
                 {
-                    path: '/',
-                    element: '',
+                    path: '/home',
+                    element: <Home />,
                 },
             ]
         }
