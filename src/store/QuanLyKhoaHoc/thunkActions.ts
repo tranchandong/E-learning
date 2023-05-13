@@ -20,9 +20,33 @@ export const FetchCourses = createAsyncThunk(
     async (_, {rejectWithValue}) => {
         try{
             const res = await quanLyKhoaHocServices.FetchCourses("GP01");
-            console.log(res.data);
             return res.data
         }catch(err){
+            return rejectWithValue(err)
+        }
+    }
+)
+
+export const FetchCouresByCategory = createAsyncThunk(
+    "quanlykhoahoc/fetchcouresbycategory",
+    async (payload: string, {rejectWithValue}) => {
+        try{
+            const res = await quanLyKhoaHocServices.FetchCouresByCategory(payload)
+            return res.data
+        }catch (err){
+            return rejectWithValue(err)
+        }
+    }
+)
+
+export const FetchCoursesDetail = createAsyncThunk(
+    "quanlykhoahoc/fetchcoursesdetail",
+    async (payload: string, {rejectWithValue}) => {
+        try {
+            const res = await quanLyKhoaHocServices.FetchCoursesDetail(payload)
+            console.log(res.data);
+            return res.data
+        }catch (err){
             return rejectWithValue(err)
         }
     }
