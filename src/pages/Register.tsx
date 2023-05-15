@@ -27,6 +27,7 @@ const Register = () => {
                 action="#"
                 onSubmit={handleSubmit(async (value) => {
                     try {
+                        console.log(value);
                         dispatch(handleRegister({
                             taiKhoan: value.taiKhoan,
                             matKhau: value.matKhau,
