@@ -22,7 +22,7 @@ const Detail = () => {
     <div>
       {courses?.slice(0,1).map((courses) => {
         return (
-          <div>
+          <div key={courses.biDanh}>
             <div className="flex justify-center h-[450px] bg-gradient-to-r from-[#FC5C7D] to-[#6A82FB]">
               <div
                 id="banner"

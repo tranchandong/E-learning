@@ -55,7 +55,7 @@ const CoursesByCategory = () => {
         <div className="w-4/5">
           <Slider {...settings} className="">
             {coursesList?.map((courses, index) => (
-              <div className="my-1 h-[300px]">
+              <div key={index} className="my-1 h-[300px]">
                 <Card
                   hoverable
                   style={{ width: 250, height: 300 }}
@@ -74,7 +74,7 @@ const CoursesByCategory = () => {
                   
                   <Button
                   onClick={() => {navigate(`/courses/${courses.tenKhoaHoc}`)}}
-                  className="absolute right-4 bottom-4 bg-red-500 text-white">Submit</Button>
+                  className="absolute right-4 bottom-4 bg-red-500 text-white">Detail</Button>
                 </Card>
               </div>
             ))}

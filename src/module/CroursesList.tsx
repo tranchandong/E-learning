@@ -24,6 +24,7 @@ const CroursesList: React.FC = () => {
       <div className="w-4/5 grid grid-cols-4 gap-1">
         {coursesList?.slice(0, 8).map((courses, index) => (
           <Card
+            key={index}
             hoverable
             style={{ width: 250, height: 300 }}
             cover={
@@ -42,7 +43,7 @@ const CroursesList: React.FC = () => {
             <Button
                   onClick={() => {navigate(`/courses/${courses.tenKhoaHoc}`)}}
             className="absolute right-4 bottom-4 bg-red-500 text-white">
-              Submit
+              Detail
             </Button>
           </Card>
         ))}
