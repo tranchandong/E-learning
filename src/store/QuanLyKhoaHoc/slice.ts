@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { GetFetchCategoryResponse, GetFetchCoursesDetail, GetFetchCoursesResponse } from "../../services/quanLyKhoaHoc.services"
-import { FetchCategory, FetchCouresByCategory, FetchCourses, FetchCoursesDetail } from "./thunkActions"
+import { FetchCategory, FetchCouresByCategory, FetchCourses, FetchCoursesDetail, FetchSearchCourses } from "./thunkActions"
 
 
 type quanLyKhoaHocInitialState = {
     categoryList?: GetFetchCategoryResponse,
     coursesList?: GetFetchCoursesResponse,
     courses?: GetFetchCoursesDetail,
+    keyword?: string,
 }
 
 const initialState: quanLyKhoaHocInitialState = {
-
+    keyword: '',
 }
 
 
@@ -26,6 +27,9 @@ export const {reducer: quanLyKhoaHocReducer, actions: quanLyKhoaHocActions} = cr
         .addCase(FetchCourses.fulfilled, (state, action) => {
             state.coursesList = action.payload
         })
+        .addCase(FetchSearchCourses.fulfilled, (state, action) => {
+            state.coursesList = action.payload
+        }) 
         .addCase(FetchCouresByCategory.fulfilled, (state, action) => {
             state.coursesList = action.payload
         })

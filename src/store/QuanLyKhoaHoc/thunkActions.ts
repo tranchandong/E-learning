@@ -27,6 +27,19 @@ export const FetchCourses = createAsyncThunk(
     }
 )
 
+export const FetchSearchCourses = createAsyncThunk(
+    "quanlykhoahoc/fetchsearchcourses",
+    async (search: string, {rejectWithValue}) => {
+        try{
+            const res = await quanLyKhoaHocServices.FetchSearchCourses("GP01", search);
+            return res.data
+            
+        }catch(err){
+            return rejectWithValue(err)
+        }
+    }
+)
+
 export const FetchCouresByCategory = createAsyncThunk(
     "quanlykhoahoc/fetchcouresbycategory",
     async (payload: string, {rejectWithValue}) => {

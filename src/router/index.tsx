@@ -6,6 +6,7 @@ import Detail from '../pages/Detail'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
+import Serp from '../pages/Serp'
 
 
 
@@ -22,6 +23,10 @@ const Router = (props: any) => {
                 {
                     path: '/home',
                     element: <Home />,
+                },
+                {
+                    path: '/:search',
+                    element: <Serp />,
                 },
                 {
                     path: '/category/:id',

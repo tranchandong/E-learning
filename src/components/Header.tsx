@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { DownOutlined, SmileOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
@@ -17,6 +17,22 @@ const Header: React.FC = () => {
   useEffect(() => {
     dispatch(FetchCategory());
   }, [dispatch]);
+
+  const keywordRef = useRef('');
+
+  const handleChange = (e: any) => {
+    const { value, id } = e.target;
+    keywordRef.current = value;
+    // setSearchParam({search:keywordRef.current});
+    console.log(keywordRef.current);
+    
+  }
+
+  const handleSubmit = (e: any) => {
+    navigate(`/${keywordRef.current}`);
+  }
+
+  // console.log(keywordRef);
 
   const item = categoryList?.map((category) => ({
     key: category.maDanhMuc,
@@ -44,8 +60,8 @@ const Header: React.FC = () => {
               <DownOutlined />
             </Space>
           </Dropdown>
-          <div className="flex items-center me-2 w-2/4">
-            <Search placeholder="input search text" />
+          <div id="search" className="flex items-center me-2 w-2/4">
+           <form onSubmit={handleSubmit} className="w-full" action=""><input className="w-full p-0.5 rounded" type="text" placeholder="Search Crourses" name="search" onChange={handleChange}/></form>
           </div>
         </div>
         <div
