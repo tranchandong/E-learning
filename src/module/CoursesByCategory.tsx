@@ -58,12 +58,12 @@ const CoursesByCategory = () => {
               <div key={index} className="my-1 h-[300px]">
                 <Card
                   hoverable
-                  style={{ width: 250, height: 300 }}
+                  style={{ width: 250, height: 300, cursor: "default" }}
                   cover={
                     <img
                       alt="example"
                       src={courses.hinhAnh}
-                      style={{ width: 300, height: 150, objectFit: "contain" }}
+                      style={{ width: 300, height: 150, padding: "10px 0 10px 0", objectFit: "contain", borderBottom: "solid", borderColor: "#8080803d"}}
                     />
                   }
                 >

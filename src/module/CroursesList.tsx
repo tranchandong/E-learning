@@ -26,12 +26,12 @@ const CroursesList: React.FC = () => {
           <Card
             key={index}
             hoverable
-            style={{ width: 250, height: 300 }}
+            style={{ width: 250, height: 300, cursor: "default" }}
             cover={
               <img
                 alt="example"
                 src={courses.hinhAnh}
-                style={{ width: 300, height: 150, objectFit: "contain", borderBottom: "solid"}}
+                style={{ width: 300, height: 150, padding: "10px 0 10px 0", objectFit: "contain", borderBottom: "solid", borderColor: "#8080803d"}}
               />
             }
           >
@@ -39,7 +39,6 @@ const CroursesList: React.FC = () => {
               title={courses.tenKhoaHoc}
               description={`${courses.moTa.slice(0, 25)}...`}
             />
-
             <Button
                   onClick={() => {navigate(`/courses/${courses.tenKhoaHoc}`)}}
             className="absolute right-4 bottom-4 bg-red-500 text-white">
