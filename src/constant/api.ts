@@ -15,6 +15,7 @@ export const checkToken = (): void => {
     token = "";
   } else {
     token = `Bearer ${user.accessToken}`;
+    localStore.setItem("token", token)
   }
 };
 

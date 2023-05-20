@@ -22,6 +22,28 @@ export type GetFetchCoursesResponse = [{
   };
 }];
 
+export type GetCoursesResponse = {
+  maKhoaHoc: string;
+  biDanh: string;
+  tenKhoaHoc: string;
+  moTa: string;
+  luotXem: number;
+  hinhAnh: string;
+  maNhom: string;
+  ngayTao: string;
+  soLuongHocVien: number;
+  nguoiTao: {
+    taiKhoan: string;
+    hoTen: string;
+    maLoaiNguoiDung: string;
+    tenLoaiNguoiDung: string;
+  };
+  danhMucKhoaHoc: {
+    maDanhMucKhoahoc: string;
+    tenDanhMucKhoaHoc: string;
+  };
+};
+
 export type GetFetchCategoryResponse = [{
     maDanhMuc: string,
     tenDanhMuc: string,
@@ -71,10 +93,16 @@ export type GetFetchCoursesDetail = [{
   };
 }]
 
+export type EnrollCoursesRequirement = {
+  maKhoaHoc: string | undefined,
+  taiKhoan: string | undefined,
+}
+
 export const quanLyKhoaHocServices = {
   FetchCategory: () => http.get<GetFetchCategoryResponse>(`QuanLyKhoaHoc/LayDanhMucKhoaHoc`),
   FetchCourses: (query: string) => http.get<GetFetchCoursesResponse>(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${query}`),
   FetchSearchCourses: (query: string, search: string) => http.get<GetFetchCoursesResponse>(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${search}&MaNhom=${query}`),
   FetchCouresByCategory: (query: string) => http.get<GetFetchCoursesByCategory>(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${query}`),
   FetchCoursesDetail: (query: string) => http.get<GetFetchCoursesDetail>(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${query}`),
+  EnrollCourses: (query: EnrollCoursesRequirement) => http.post(`QuanLyKhoaHoc/DangKyKhoaHoc`, query)
 };

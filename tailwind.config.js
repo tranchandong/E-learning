@@ -22,7 +22,7 @@ module.exports = {
         },
         backgroundImage: {
           'bannerDetail': "url('/public/img/Office_laptop_programming_coffee_4K_1920x1080.jpg')",
-          'banner': "url('/public/img/Internet_Business_Technology_HD_Wallpaper_15 Wallpaper_1920x1080[10wallpaper.com].jpeg')"
+          'banner': "url('/public/img/banner.jpg')"
         }
       },
       fontFamily: {
@@ -64,4 +64,7 @@ module.exports = {
     },
     plugins: [
     ],
+    corePlugins: {
+      preflight: false // <== disable this!
+    },
   }

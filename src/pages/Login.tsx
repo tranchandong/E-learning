@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import { NavLink, useNavigate } from "react-router-dom";
-import { HandleLogin } from "../store/QuanLyNguoiDung/thunkActions";
+import { handleLogin } from "../store/QuanLyNguoiDung/thunkActions";
 
 const Login: React.FC = () => {
   const { userInfo } = useSelector((state: RootState) => state.quanLyNguoiDung);
@@ -16,7 +16,7 @@ const Login: React.FC = () => {
 //         matKhau: '',
 //     },
 //   onSubmit: values => {
-//       dispatch(HandleLogin(values));
+//       dispatch(handleLogin(values));
 //   }
 //   }) 
 
@@ -41,7 +41,7 @@ const Login: React.FC = () => {
         <form 
         onSubmit={handleSubmit(async (value) => {
             try{
-                dispatch(HandleLogin({
+                dispatch(handleLogin({
                     taiKhoan: value.taiKhoan,
                     matKhau: value.matKhau
                 }));

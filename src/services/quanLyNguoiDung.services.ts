@@ -24,7 +24,19 @@ export type RegisterRequirement = {
     hoTen: string,
 }
 
+export type GetUserDataResponse = {
+    chiTietKhoaHocGhiDanh: [],
+    taiKhoan: string,
+    matKhau: string,
+    hoTen: string,
+    soDT: string,
+    maLoaiNguoiDung: string,
+    maNhom: string,
+    email: string,
+}
+
 export const quanLyNguoiDungServices = {
-    Lognin: (query: LoginRequirement) => http.post<LoginResponse>(`QuanLyNguoiDung/DangNhap`, query),
+    Login: (query: LoginRequirement) => http.post<LoginResponse>(`QuanLyNguoiDung/DangNhap`, query),
     Register: (query: RegisterRequirement) => http.post(`QuanLyNguoiDung/DangKy`, query),
+    GetUserData: () => http.post<GetUserDataResponse>(`QuanLyNguoiDung/ThongTinTaiKhoan`),
 }

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { quanLyKhoaHocServices } from "../../services/quanLyKhoaHoc.services";
+import { EnrollCoursesRequirement, quanLyKhoaHocServices } from "../../services/quanLyKhoaHoc.services";
 
 export const FetchCategory = createAsyncThunk(
     "quanlykhoahoc/fetcgcategory",
@@ -61,6 +61,19 @@ export const FetchCoursesDetail = createAsyncThunk(
             return res.data
         }catch (err){
             return rejectWithValue(err)
+        }
+    }
+)
+
+export const handleEnrollCourses = createAsyncThunk(
+    "quanlykhoahoc/handleenrollcourses",
+    async (payload: EnrollCoursesRequirement, {rejectWithValue}) => {
+        try{
+            const res = await quanLyKhoaHocServices.EnrollCourses(payload)
+            console.log(res.data);
+            
+        }catch (err){
+            rejectWithValue(err)
         }
     }
 )

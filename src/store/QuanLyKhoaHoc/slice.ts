@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { GetFetchCategoryResponse, GetFetchCoursesDetail, GetFetchCoursesResponse } from "../../services/quanLyKhoaHoc.services"
-import { FetchCategory, FetchCouresByCategory, FetchCourses, FetchCoursesDetail, FetchSearchCourses } from "./thunkActions"
+import { FetchCategory, FetchCouresByCategory, FetchCourses, FetchCoursesDetail, FetchSearchCourses, handleEnrollCourses } from "./thunkActions"
 
 
 type quanLyKhoaHocInitialState = {
@@ -35,6 +35,9 @@ export const {reducer: quanLyKhoaHocReducer, actions: quanLyKhoaHocActions} = cr
         })
         .addCase(FetchCoursesDetail.fulfilled, (state, action) => {
             state.courses = action.payload
+        })
+        .addCase(handleEnrollCourses.fulfilled, (state, action) => {
+            alert("Enroll Successfully")            
         })
     },
 })
