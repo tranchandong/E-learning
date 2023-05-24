@@ -32,7 +32,7 @@ const CrouresAll = () => {
     slidesToScroll: 1,
     slidesPerRow: 4,
     customPaging: (i: number) => {
-      return <span>{i + 1}</span>;
+      return <span className="hover:text-blue-500 p-1 mr-2">{i + 1}</span>;
     },
     appendDots: (dots: string) => (
       <div
@@ -43,39 +43,17 @@ const CrouresAll = () => {
           width: "100%",
         }}
       >
-        <ul style={{ margin: "0px", fontSize: 20 }}> {dots} </ul>
+        <ul className="" style={{ margin: "0px", fontSize: 20 }}> {dots} </ul>
       </div>
     ),
   };
 
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center">
       <div className="w-4/5">
-        <div className="flex justify-center">
-          <div>
-            <div className="w-5/12">
-              <h1 className="text-3xl py-2">
-                <span className="font-bold">Career Transformation</span> <br />
-                Learn Specialized Programming Pathways at{" "}
-                <span className="text-yellow-400">E-learning</span>
-              </h1>
-              <p>
-                E-learning offers a detailed, comprehensive, and professional
-                programming curriculum aligned with the standards of the
-                University of Arizona - USA. Our approach ensures 100% practical
-                project-based learning to avoid confusion and enhances critical
-                thinking and deep foundational logical skills development,
-                enabling easy progression to senior and leadership roles. By
-                following the E-learning curriculum, you can save time, costs,
-                and secure the best and sustainable job opportunities for career
-                advancement.
-              </p>
-            </div>
-            <div className="">
-              <img className="w-[280px] rounded" alt="" />
-            </div>
-          </div>
-        </div>
+        
+      <div className="h-[300px] bg-bannerOnline bg-no-repeat bg-center"></div>  
+      
         <hr className="my-2" />
         <div>
         <Slider {...settings} className="mb-3">

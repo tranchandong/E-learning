@@ -22,7 +22,8 @@ module.exports = {
         },
         backgroundImage: {
           'bannerDetail': "url('/public/img/Office_laptop_programming_coffee_4K_1920x1080.jpg')",
-          'banner': "url('/public/img/banner.jpg')"
+          'banner': "url('/public/img/banner.jpg')",
+          'bannerOnline': "url('/public/img/OnlineCourses-Collection.jpg')",
         }
       },
       fontFamily: {

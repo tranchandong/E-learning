@@ -33,7 +33,7 @@ const Detail = () => {
                     {param?.id?.toLocaleUpperCase()}
                   </h1>
                   <p className="py-1">Views: {courses.luotXem} | Ratings: </p>
-                  <Button className="text-white">Enroll</Button>
+                  <Button className=" text-[#ea077c] font-bold border-[#ea077c] border">Enroll</Button>
                 </div>
                 <div className="">
                   <img

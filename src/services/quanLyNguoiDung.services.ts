@@ -25,7 +25,16 @@ export type RegisterRequirement = {
 }
 
 export type GetUserDataResponse = {
-    chiTietKhoaHocGhiDanh: [],
+    chiTietKhoaHocGhiDanh: [{
+        maKhoaHoc: string,
+        tenKhoaHoc: string,
+        biDanh: string,
+        moTa: string,
+        luotXem: number,
+        hinhAnh: string,
+        ngayTao: string
+        danhGia: number
+    }],
     taiKhoan: string,
     matKhau: string,
     hoTen: string,

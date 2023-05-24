@@ -98,11 +98,17 @@ export type EnrollCoursesRequirement = {
   taiKhoan: string | undefined,
 }
 
+export type CancelCoursesRequirement = {
+  maKhoaHoc: string,
+  taiKhoan: string,
+}
+
 export const quanLyKhoaHocServices = {
   FetchCategory: () => http.get<GetFetchCategoryResponse>(`QuanLyKhoaHoc/LayDanhMucKhoaHoc`),
   FetchCourses: (query: string) => http.get<GetFetchCoursesResponse>(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${query}`),
   FetchSearchCourses: (query: string, search: string) => http.get<GetFetchCoursesResponse>(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${search}&MaNhom=${query}`),
   FetchCouresByCategory: (query: string) => http.get<GetFetchCoursesByCategory>(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${query}`),
   FetchCoursesDetail: (query: string) => http.get<GetFetchCoursesDetail>(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${query}`),
-  EnrollCourses: (query: EnrollCoursesRequirement) => http.post(`QuanLyKhoaHoc/DangKyKhoaHoc`, query)
+  EnrollCourses: (query: EnrollCoursesRequirement) => http.post(`QuanLyKhoaHoc/DangKyKhoaHoc`, query),
+  CancelCourses: (query: CancelCoursesRequirement) => http.post(`QuanLyKhoaHoc/HuyGhiDanh`, query),
 };
