@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { AppDispatch, RootState } from "../store";
 import { handleCancelCourses } from "../store/QuanLyKhoaHoc/thunkActions";
@@ -8,6 +9,7 @@ import { handleCancelCourses } from "../store/QuanLyKhoaHoc/thunkActions";
 const UserCourses = () => {
   const { userData } = useSelector((state: RootState) => state.quanLyNguoiDung)
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate()
 
   const settings = {
     rows: 3,
@@ -52,7 +54,10 @@ const UserCourses = () => {
                   </div>
                 </div>
                 <div className="absolute right-0 bottom-0">
-                  <Button className="text-[#ea077c] border border-[#ea077c] mr-1">
+                  <Button className="text-[#ea077c] border border-[#ea077c] mr-1"
+                  onClick={() => {
+                    navigate(`/courses/${courses.maKhoaHoc}`)
+                  }}>
                     Detail
                   </Button>
                   <Button
