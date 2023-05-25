@@ -8,6 +8,7 @@ import {
 import { Button, Card, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { GetCoursesResponse } from "../services/quanLyKhoaHoc.services";
+import EnrollModal from "./EnrollModal";
 
 const CroursesList: React.FC = () => {
   const { coursesList } = useSelector(
@@ -107,27 +108,13 @@ const CroursesList: React.FC = () => {
               >
                 Enroll
               </Button>
-              <Modal
-                title={<p className="text-2xl">{selectedCourse?.tenKhoaHoc}</p>}
-                open={isModalOpen}
-                onOk={handleSubmit}
-                onCancel={handleCancel}
-                okText="Submit"
-                cancelButtonProps={{
-                  style: { color: "#ea077c", borderColor: "#ea077c" },
-                }}
-                okButtonProps={{
-                  style: { background: "#ea077c", color: "white" },
-                }}
-              >
-                <p className="py-0.5">Description: {selectedCourse?.moTa}</p>
-                <p>Views: {selectedCourse?.luotXem}</p>
-                <p>Enrolled students: {selectedCourse?.soLuongHocVien}</p>
-                <hr className="my-1" />
-                <p>Name: {userInfo?.hoTen}</p>
-                <p>Email: {userInfo?.email}</p>
-                <p>Phone: {userInfo?.soDT}</p>
-              </Modal>
+              <EnrollModal
+                selectedCourse={selectedCourse}
+                isModalOpen={isModalOpen}
+                handleCancel={handleCancel}
+                handleSubmit={handleSubmit}
+                userInfo={userInfo}
+              />
             </div>
           </Card>
         ))}

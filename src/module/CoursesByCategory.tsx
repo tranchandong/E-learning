@@ -11,6 +11,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { GetCoursesResponse } from "../services/quanLyKhoaHoc.services";
+import EnrollModal from "./EnrollModal";
 
 const CoursesByCategory = () => {
   const { coursesList } = useSelector(
@@ -141,31 +142,13 @@ const CoursesByCategory = () => {
                     >
                       Enroll
                     </Button>
-                    <Modal
-                      title={
-                        <p className="text-2xl">{selectedCourse?.tenKhoaHoc}</p>
-                      }
-                      open={isModalOpen}
-                      onOk={handleSubmit}
-                      onCancel={handleCancel}
-                      okText="Submit"
-                      cancelButtonProps={{
-                        style: { color: "#ea077c", borderColor: "#ea077c" },
-                      }}
-                      okButtonProps={{
-                        style: { background: "#ea077c", color: "white" },
-                      }}
-                    >
-                      <p className="py-0.5">
-                        Description: {selectedCourse?.moTa}
-                      </p>
-                      <p>Views: {selectedCourse?.luotXem}</p>
-                      <p>Enrolled students: {selectedCourse?.soLuongHocVien}</p>
-                      <hr className="my-1" />
-                      <p>Name: {userInfo?.hoTen}</p>
-                      <p>Email: {userInfo?.email}</p>
-                      <p>Phone: {userInfo?.soDT}</p>
-                    </Modal>
+                    <EnrollModal
+                      selectedCourse={selectedCourse}
+                      isModalOpen={isModalOpen}
+                      handleCancel={handleCancel}
+                      handleSubmit={handleSubmit}
+                      userInfo={userInfo}
+                    />
                   </div>
                 </Card>
               </div>

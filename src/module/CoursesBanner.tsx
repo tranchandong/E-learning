@@ -1,8 +1,50 @@
 import { Button } from "antd";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { GetCoursesResponse } from "../services/quanLyKhoaHoc.services";
+import { AppDispatch, RootState } from "../store";
+import { handleEnrollCourses } from "../store/QuanLyKhoaHoc/thunkActions";
+import AdviceModal from "./AdviceModal";
 
 const CoursesBanner = () => {
+  const { userInfo } = useSelector((state: RootState) => state.quanLyNguoiDung);
+  //State for Modal Antd
+  const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
+  const [isAdviceModalOpen, setIsAdviceModalOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] =
+    useState<GetCoursesResponse | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  //Modal Antd
+
+  const handleAdviceClick = () => {
+    showAdviceModal();
+  };
+
+  const showEnrollModal = () => {
+    setIsEnrollModalOpen(true);
+  };
+
+  const showAdviceModal = () => {
+    setIsAdviceModalOpen(true);
+  };
+
+  const handleSubmit = () => {
+    dispatch(
+      handleEnrollCourses({
+        maKhoaHoc: selectedCourse?.maKhoaHoc,
+        taiKhoan: userInfo?.taiKhoan,
+      })
+    );
+    setIsEnrollModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsEnrollModalOpen(false);
+    setIsAdviceModalOpen(false);
+  };
+  //End Modal Antd
+
   return (
     <div className="flex h-[500px] w-full bg-black">
       <div className="w-7/12 bg-banner bg-contain bg-no-repeat bg-center">
@@ -20,8 +62,24 @@ const CoursesBanner = () => {
           </p>
           <div>
             <div className="">
-              <NavLink to={'/courses'}><Button className=" mr-1">Discover</Button></NavLink>
-              <Button className="">Get Advice</Button>
+              <NavLink to={"/courses"}>
+                <Button className=" mr-1">Discover</Button>
+              </NavLink>
+              <Button
+                className=""
+                onClick={() => {
+                  handleAdviceClick();
+                }}
+              >
+                Get Advice
+              </Button>
+              <AdviceModal
+                selectedCourse={selectedCourse}
+                isModalOpen={isAdviceModalOpen}
+                handleCancel={handleCancel}
+                handleSubmit={handleSubmit}
+                userInfo={userInfo}
+              />
             </div>
           </div>
         </div>

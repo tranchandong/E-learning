@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { GetCoursesResponse } from "../services/quanLyKhoaHoc.services";
 import { AppDispatch, RootState } from "../store";
-import { FetchCourses, handleEnrollCourses } from "../store/QuanLyKhoaHoc/thunkActions";
+import {
+  FetchCourses,
+  handleEnrollCourses,
+} from "../store/QuanLyKhoaHoc/thunkActions";
 import Slider from "react-slick";
-
 
 const CrouresAll = () => {
   const { coursesList } = useSelector(
@@ -43,24 +45,29 @@ const CrouresAll = () => {
           width: "100%",
         }}
       >
-        <ul className="" style={{ margin: "0px", fontSize: 20 }}> {dots} </ul>
+        <ul className="" style={{ margin: "0px", fontSize: 20 }}>
+          {" "}
+          {dots}{" "}
+        </ul>
       </div>
     ),
   };
 
   return (
-    <div className="flex justify-center">
-      <div className="w-4/5">
-        
-      <div className="h-[300px] bg-bannerOnline bg-no-repeat bg-center"></div>  
-      
+    <div>
+      <div className="h-[300px] bg-bannerOnline bg-no-repeat bg-center"></div>
+      <div className="w-4/5 m-auto">
         <hr className="my-2" />
         <div>
-        <Slider {...settings} className="mb-3">
+          <Slider {...settings} className="mb-3">
             {coursesList?.map((courses, index) => (
-              <div key={index} className="my-1 h-[300px]" onClick={() => {
-                navigate(`/courses/${courses.tenKhoaHoc}`);
-              }}>
+              <div
+                key={index}
+                className="my-1 h-[300px]"
+                onClick={() => {
+                  navigate(`/courses/${courses.tenKhoaHoc}`);
+                }}
+              >
                 <Card
                   key={index}
                   hoverable
