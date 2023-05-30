@@ -5,7 +5,7 @@ import {
   FetchCourses,
   handleEnrollCourses,
 } from "../store/QuanLyKhoaHoc/thunkActions";
-import { Button, Card, Modal } from "antd";
+import { Button, Card, message, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { GetCoursesResponse } from "../services/quanLyKhoaHoc.services";
 import EnrollModal from "./EnrollModal";
@@ -32,11 +32,9 @@ const CroursesList: React.FC = () => {
   }, [dispatch]);
 
   //Modal Antd
-  toast.error("")
   const handleEnrollClick = (course: GetCoursesResponse) => {
     if (!userInfo) {
-      alert("Login")
-      toast.error("ok")
+      message.info("Please log in before enrolling.")
       navigate("/login");
     } else {
       setSelectedCourse(course);

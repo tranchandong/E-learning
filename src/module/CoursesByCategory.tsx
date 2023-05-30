@@ -1,4 +1,4 @@
-import { Button, Card, Modal } from "antd";
+import { Button, Card, message, Modal } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -66,7 +66,7 @@ const CoursesByCategory = () => {
       setSelectedCourse(course);
       showModal();
     } else {
-      alert("Login Frist!");
+      message.info("Please log in before enrolling.")
       navigate("/login");
     }
   };

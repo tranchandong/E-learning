@@ -14,15 +14,11 @@ export const handleLogin = createAsyncThunk(
     try {
       const res = await quanLyNguoiDungServices.Login(query);
       if (res.status === 200) {
-        message.success("Login Successfully")
-        checkToken()
+        message.success("Login Successfully");
         return res.data;
-      }else if(res.status === 500){
-        message.error(res.statusText)
       }
     } catch (err) {
-    //   alert("Rejected, Check username or password");
-        message.error("Rejected, Check username or password")
+      message.error("Invalid username or password!");
       return rejectWithValue(err);
     }
   }
@@ -33,7 +29,10 @@ export const handleRegister = createAsyncThunk(
   async (query: RegisterRequirement, { rejectWithValue }) => {
     try {
       const res = await quanLyNguoiDungServices.Register(query);
-      return res.data;
+      if (res.status === 200) {
+        message.success("Register Successfully!");
+        return res.status;
+      }
     } catch (err) {
       rejectWithValue(err);
     }
@@ -45,7 +44,6 @@ export const handleEditUser = createAsyncThunk(
   async (query: EditUserRequirement, { rejectWithValue }) => {
     try {
       const res = await quanLyNguoiDungServices.EditUser(query);
-      console.log(res.data);
       return res.data;
     } catch (err) {
       rejectWithValue(err);

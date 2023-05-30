@@ -14,7 +14,7 @@ const Header: React.FC = () => {
   const { categoryList } = useSelector(
     (state: RootState) => state.quanLyKhoaHoc
   );
-  const { userInfo } = useSelector((state: RootState) => state.quanLyNguoiDung);
+  const { userInfo, status } = useSelector((state: RootState) => state.quanLyNguoiDung);
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -136,6 +136,7 @@ const Header: React.FC = () => {
             <NavLink to={"/register"}>
               <div
                 className="text-white bg-black ms-1 font-medium text-sm p-[0.8rem] rounded text-center md:mr-0 hover:bg-gray-800 "
+              onClick={() => {localStorage.removeItem("status")}}
               >
                 Sign Up
               </div>

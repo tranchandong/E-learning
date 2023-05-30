@@ -8,10 +8,11 @@ type quanLyNguoiDungInitialState = {
     userInfo?: LoginResponse,
     userData?: GetUserDataResponse,
     userDataUpdated?: GetEditUserResponse,
+    status?: number,
 }
 
 const initialState: quanLyNguoiDungInitialState = {
-
+    status: undefined,
 }
 
 
@@ -40,8 +41,8 @@ export const {reducer: quanLyNguoiDungReducer, actions: quanLyNguoiDungActions} 
             checkToken()
         })
         .addCase(handleRegister.fulfilled, (state, action) => {
-            console.log(action);
-            alert("ok")
+            state.status = action.payload
+            localStorage.setItem("status", JSON.stringify(state.status)) 
         })
         .addCase(getUserData.fulfilled, (state, action) => {
             state.userData = action.payload

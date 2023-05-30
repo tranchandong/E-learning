@@ -13,11 +13,9 @@ type AdviceModalProps = {
 };
 
 const AdviceModal: React.FC<AdviceModalProps> = ({
-  selectedCourse,
   isModalOpen,
   handleCancel,
   handleSubmit,
-  userInfo,
 }) => {
   return (
     <Modal

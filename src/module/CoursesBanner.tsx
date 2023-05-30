@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, message } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -10,37 +10,25 @@ import AdviceModal from "./AdviceModal";
 const CoursesBanner = () => {
   const { userInfo } = useSelector((state: RootState) => state.quanLyNguoiDung);
   //State for Modal Antd
-  const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
   const [isAdviceModalOpen, setIsAdviceModalOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] =
     useState<GetCoursesResponse | null>(null);
   const dispatch = useDispatch<AppDispatch>();
-  //Modal Antd
 
+  //Modal Antd
   const handleAdviceClick = () => {
     showAdviceModal();
   };
-
-  const showEnrollModal = () => {
-    setIsEnrollModalOpen(true);
-  };
-
   const showAdviceModal = () => {
     setIsAdviceModalOpen(true);
   };
 
   const handleSubmit = () => {
-    dispatch(
-      handleEnrollCourses({
-        maKhoaHoc: selectedCourse?.maKhoaHoc,
-        taiKhoan: userInfo?.taiKhoan,
-      })
-    );
-    setIsEnrollModalOpen(false);
+    message.success("Registration advice successful. We will contact you for consultation shortly!")
+    setIsAdviceModalOpen(false);
   };
 
   const handleCancel = () => {
-    setIsEnrollModalOpen(false);
     setIsAdviceModalOpen(false);
   };
   //End Modal Antd

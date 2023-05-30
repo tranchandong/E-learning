@@ -1,8 +1,8 @@
-import { Button, Card, Modal } from "antd";
+import { Button, Card, message, Modal } from "antd";
 import Meta from "antd/es/card/Meta";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import AdviceModal from "../module/AdviceModal";
 import EnrollModal from "../module/EnrollModal";
@@ -17,11 +17,11 @@ import {
 const Detail = () => {
   const { courses, coursesList } = useSelector((state: RootState) => state.quanLyKhoaHoc);
   const { userInfo } = useSelector((state: RootState) => state.quanLyNguoiDung);
-  
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const param = useParams();
+  const { pathname } = useLocation();
 
   //State for Modal Antd
   const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
@@ -39,13 +39,19 @@ const Detail = () => {
     dispatch(FetchCourses());
   }, [dispatch]);
 
+    
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+
   //Modal Antd
   const handleEnrollClick = (course: GetCoursesResponse) => {
     if (userInfo) {
       setSelectedCourse(course);
       showEnrollModal();
     } else {
-      alert("Login Frist!");
+      message.info("Please log in before enrolling.")
       navigate("/login");
     }
   };
@@ -71,6 +77,11 @@ const Detail = () => {
     );
     setIsEnrollModalOpen(false);
   };
+
+  const handleSubmitAdvice = () => {
+    message.success("Registration advice successful. We will contact you for consultation shortly!")
+    setIsAdviceModalOpen(false);
+  }
 
   const handleCancel = () => {
     setIsEnrollModalOpen(false);
@@ -151,7 +162,7 @@ const Detail = () => {
                     selectedCourse={selectedCourse}
                     isModalOpen={isAdviceModalOpen}
                     handleCancel={handleCancel}
-                    handleSubmit={handleSubmit}
+                    handleSubmit={handleSubmitAdvice}
                     userInfo={userInfo}
                   />
                 </div>
