@@ -44,8 +44,33 @@ export type GetUserDataResponse = {
     email: string,
 }
 
+export type EditUserRequirement = {
+    taiKhoan: string | undefined,
+    matKhau: string | undefined,
+    hoTen: string | undefined,
+    soDT: string | undefined,
+    maLoaiNguoiDung: string | undefined,
+    maNhom: string | undefined,
+    email: string | undefined,
+  }
+
+export type GetEditUserResponse = {
+    taiKhoan: string,
+    matKhau: string,
+    hoTen: string,
+    soDt: string,
+    maLoaiNguoiDung: string,
+    maNhom: string,
+    email: string,
+    biDanh: string,
+    maLoaiNguoiDungNavigation: string,
+    hocVienKhoaHoc: string,
+    khoaHoc: string,
+  }
+
 export const quanLyNguoiDungServices = {
     Login: (query: LoginRequirement) => http.post<LoginResponse>(`QuanLyNguoiDung/DangNhap`, query),
     Register: (query: RegisterRequirement) => http.post(`QuanLyNguoiDung/DangKy`, query),
     GetUserData: () => http.post<GetUserDataResponse>(`QuanLyNguoiDung/ThongTinTaiKhoan`),
+    EditUser: (query: EditUserRequirement) => http.put<GetEditUserResponse>(`QuanLyNguoiDung/CapNhatThongTinNguoiDung`, query)
 }

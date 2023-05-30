@@ -1,21 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Avatar, Button, Space } from "antd";
 import { AppDispatch, RootState } from "../store";
-import { getUserData } from "../store/QuanLyNguoiDung/thunkActions";
-import { MailOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { getUserData, } from "../store/QuanLyNguoiDung/thunkActions";
+import EditInfoModal from "./EditInfoModal";
+import { UserOutlined } from "@ant-design/icons";
+import { quanLyNguoiDungActions } from "../store/QuanLyNguoiDung/slice";
 
 const UserInfomation: React.FC = () => {
-  const { userData } = useSelector((state: RootState) => state.quanLyNguoiDung);
+  const { userData, userDataUpdated } = useSelector((state: RootState) => state.quanLyNguoiDung);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
+  //State for Modal Antd
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  //End Modal Antd
+
   useEffect(() => {
     dispatch(getUserData());
-  }, [dispatch]);
+    console.log("ok");
+    
+  }, [userData, userDataUpdated]);
 
-  console.log(userData?.chiTietKhoaHocGhiDanh);
+  //Modal Antd
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  //End Modal Antd
 
   return (
     <div className="">
@@ -63,40 +79,17 @@ const UserInfomation: React.FC = () => {
             <p className="font-bold text-lg">{userData?.maNhom}</p>
           </div>
         </div>
-        <Button type="primary" className="absolute bottom-1 right-1">
+        <Button type="primary" className="absolute bottom-1 right-1"
+        onClick={() => {showModal()}}>
           Edit
         </Button>
-      </div>
-      {/* <div className="w-6/12">
-        {userData?.chiTietKhoaHocGhiDanh.map((courses, index) => {
-          return <div className="p-1">
-            <div className="border p-1">
-              <div className="flex">
-                <div>
-                  <div
-                    // className="w-[150px] h-[150px]"
-                    style={{
-                      width: 150,
-                      height: 150,
-                      backgroundImage: `URL(${courses.hinhAnh})`,
-                      backgroundSize: "cover",
-                      backgroundRepeat: "none",
-                      backgroundPosition: "center",
+        <EditInfoModal 
+          isModalOpen={isModalOpen}
+          handleCancel={handleCancel}
+          userData={userData}
+        />
 
-                    }}
-                  ></div>
-                </div>
-                <div className="px-1">
-                  <h1 className="font-bold text-2xl" >{courses.tenKhoaHoc}</h1>
-                  <p className="text-gray-500"><span>{courses.moTa}</span></p>
-                  <p className="text-gray-500"> Views: <span>{courses.luotXem}</span></p>
-                </div>
-              </div>
-            </div>
-            <div></div>
-          </div>
-        })}
-      </div> */}
+      </div>
     </div>
   );
 };

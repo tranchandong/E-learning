@@ -9,6 +9,7 @@ import Login from '../pages/Login'
 import Profile from '../pages/Profile'
 import Register from '../pages/Register'
 import Serp from '../pages/Serp'
+import Test from '../pages/Test'
 
 
 
@@ -53,6 +54,10 @@ const Router = (props: any) => {
                 {
                     path: '/profile',
                     element: <Profile />
+                },
+                {
+                    path: '/test',
+                    element: <Test />
                 },
             ]
         }

@@ -3,24 +3,6 @@ import { Modal } from 'antd';
 import { GetCoursesResponse } from "../services/quanLyKhoaHoc.services";
 import { LoginResponse } from "../services/quanLyNguoiDung.services";
 
-
-// type EnrollModalProps {
-//   selectedCourse: {
-//     tenKhoaHoc: string;
-//     moTa: string;
-//     luotXem: number;
-//     soLuongHocVien: number;
-//   };
-//   isModalOpen: boolean;
-//   handleCancel: () => void;
-//   handleSubmit: () => void;
-//   userInfo: {
-//     hoTen: string;
-//     email: string;
-//     soDT: string;
-//   };
-// }
-
 type EnrollModalProps = {
     selectedCourse: GetCoursesResponse | null,
   isModalOpen: boolean,
@@ -39,7 +21,7 @@ const EnrollModal: React.FC<EnrollModalProps> = ({
   return (
     <Modal
       title={<p className="text-2xl">{selectedCourse?.tenKhoaHoc}</p>}
-      visible={isModalOpen}
+      open={isModalOpen}
       onOk={handleSubmit}
       onCancel={handleCancel}
       okText="Submit"

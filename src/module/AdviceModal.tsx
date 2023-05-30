@@ -22,7 +22,7 @@ const AdviceModal: React.FC<AdviceModalProps> = ({
   return (
     <Modal
       title={<h1>Get Advice</h1>}
-      visible={isModalOpen}
+      open={isModalOpen}
       onOk={handleSubmit}
       onCancel={handleCancel}
       okText="Submit"

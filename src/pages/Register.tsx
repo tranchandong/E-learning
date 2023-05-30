@@ -8,16 +8,19 @@ import { handleRegister } from "../store/QuanLyNguoiDung/thunkActions";
 // import { handleRegister } from "../store/QuanLyNguoiDung/thunkActions";
 
 const Register = () => {
-  const {register, handleSubmit, formState: {errors}} = useForm({mode: "onChange"})
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onChange" });
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-
 
   return (
     <div className="">
       <section className="bg-[#fdfcf0]">
-        <div className="flex flex-col items-center justify-center lg:py-0">
-          <div className="rounded border-8 my-2 bg-white">
+        <div className="flex flex-col items-center justify-center lg:py-0 ">
+          <div className="rounded border-solid my-2 bg-white">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                 Create account
@@ -26,19 +29,20 @@ const Register = () => {
                 className="space-y-4 md:space-y-6"
                 action="#"
                 onSubmit={handleSubmit(async (value) => {
-                    try {
-                        console.log(value);
-                        dispatch(handleRegister({
-                            taiKhoan: value.taiKhoan,
-                            matKhau: value.matKhau,
-                            email: value.email,
-                            soDt: value.soDt,
-                            maNhom: value.maNhom,
-                            hoTen: value.hoTen,
-                        }))         
-                    } catch (err) {
-                        console.log(err);
-                    }
+                  try {
+                    dispatch(
+                      handleRegister({
+                        taiKhoan: value.taiKhoan,
+                        matKhau: value.matKhau,
+                        email: value.email,
+                        soDt: value.soDt,
+                        maNhom: "GP01",
+                        hoTen: value.hoTen,
+                      })
+                    );
+                  } catch (err) {
+                    console.log(err);
+                  }
                 })}
               >
                 <div className="flex">
@@ -59,7 +63,7 @@ const Register = () => {
                       {...register("taiKhoan")}
                     />
                   </div>
-                  <div>
+                  <div className=" pe-1">
                     <label
                       htmlFor="email"
                       className="block mb-0.5 text-sm font-medium text-gray-900"
@@ -107,25 +111,24 @@ const Register = () => {
                     {...register("matKhau")}
                   />
                 </div>
-                <div className="flex">
-                  <div className="pe-1">
-                    <label
-                      htmlFor="number"
-                      className="block mb-0.5 text-sm font-medium text-gray-900"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      type="number"
-                      id="soDt"
-                      pattern="[0-9]{10}"
-                      placeholder="Your phone number"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                      title="Sorry, your Phone Number must be 10 characters long."
-                      {...register("soDt")}
-                    />
-                  </div>{" "}
-                  <div className="pe-1">
+                <div className="pe-1">
+                  <label
+                    htmlFor="number"
+                    className="block mb-0.5 text-sm font-medium text-gray-900"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="number"
+                    id="soDt"
+                    pattern="[0-9]{10}"
+                    placeholder="Your phone number"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    title="Sorry, your Phone Number must be 10 characters long."
+                    {...register("soDt")}
+                  />
+                </div>{" "}
+                {/* <div className="pe-1">
                     <label
                       htmlFor="maNhom"
                       className="block mb-0.5 text-sm font-medium text-gray-900"
@@ -139,11 +142,10 @@ const Register = () => {
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                       {...register("maNhom")}
                     />
-                  </div>
-                </div>
+                  </div> */}
                 <button
                   type="submit"
-                  className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  className="w-full pe-1 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
                   Create an account
                 </button>

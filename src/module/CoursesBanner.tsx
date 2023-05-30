@@ -58,7 +58,7 @@ const CoursesBanner = () => {
           </h1>
           <p className="w-3/4 py-1 text-2xl text-white">
             Become a professional programmer at{" "}
-            <span className="text-yellow-400">E-learning.</span>
+            <span className="text-yellow-400">Edemy.</span>
           </p>
           <div>
             <div className="">

@@ -107,7 +107,7 @@ const CoursesByCategory = () => {
                   }}
                   cover={
                     <img
-                      alt="example"
+                      alt={courses.biDanh}
                       src={courses.hinhAnh}
                       style={{
                         width: 250,

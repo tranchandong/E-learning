@@ -25,7 +25,7 @@ const CrouresAll = () => {
 
   //Slider
   const settings = {
-    rows: 2,
+    rows: 3,
     arrow: false,
     dots: true,
     infinite: false,
@@ -78,7 +78,7 @@ const CrouresAll = () => {
                   }}
                   cover={
                     <img
-                      alt="example"
+                      alt={courses.biDanh}
                       src={courses.hinhAnh}
                       style={{
                         width: 250,

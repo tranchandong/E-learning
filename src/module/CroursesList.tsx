@@ -9,17 +9,19 @@ import { Button, Card, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { GetCoursesResponse } from "../services/quanLyKhoaHoc.services";
 import EnrollModal from "./EnrollModal";
+import { ToastContainer, toast } from "react-toastify";
+import { ToastMessage } from "./ToastMessage/ToastMessage";
 
 const CroursesList: React.FC = () => {
   const { coursesList } = useSelector(
     (state: RootState) => state.quanLyKhoaHoc
   );
   const { userInfo } = useSelector((state: RootState) => state.quanLyNguoiDung);
-
   //State for Modal Antd
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] =
     useState<GetCoursesResponse | null>(null);
+  //End Modal Antd
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -30,13 +32,15 @@ const CroursesList: React.FC = () => {
   }, [dispatch]);
 
   //Modal Antd
+  toast.error("")
   const handleEnrollClick = (course: GetCoursesResponse) => {
-    if (userInfo) {
+    if (!userInfo) {
+      alert("Login")
+      toast.error("ok")
+      navigate("/login");
+    } else {
       setSelectedCourse(course);
       showModal();
-    } else {
-      alert("Login Frist!");
-      navigate("/login");
     }
   };
 

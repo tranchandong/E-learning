@@ -18,30 +18,21 @@ const Header: React.FC = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const keywordRef = useRef("");
 
   useEffect(() => {
     dispatch(quanLyNguoiDungActions.getUser());
-    checkToken();
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(FetchCategory());
   }, [dispatch]);
-
-  const keywordRef = useRef("");
 
   const handleChange = (e: any) => {
     const { value, id } = e.target;
     keywordRef.current = value;
-    // setSearchParam({search:keywordRef.current});
-    console.log(keywordRef.current);
   };
 
   const handleSubmit = (e: any) => {
     navigate(`/${keywordRef.current}`);
   };
-
-  // console.log(keywordRef);
 
   const item = categoryList?.map((category) => ({
     key: category.maDanhMuc,
@@ -55,11 +46,11 @@ const Header: React.FC = () => {
 
   const userItems: MenuProps["items"] = [
     {
-      label: <p className="text-right">{userInfo?.hoTen}</p>,
+      label: (<NavLink to={'/profile'}><p className="text-right">{userInfo?.hoTen}</p></NavLink>),
       key: "0",
     },
     {
-      label: <p className="text-right">{userInfo?.email}</p>,
+      label: (<NavLink to={'/profile'}><p className="text-right">{userInfo?.email}</p></NavLink>),
       key: "1",
     },
     {
@@ -98,7 +89,7 @@ const Header: React.FC = () => {
       key: "6",
     },
     {
-      label: <p className="text-right">Logout</p>,
+      label: <p className="text-right text-red-500" onClick={() => {dispatch(quanLyNguoiDungActions.handleLogout())}}>Logout</p>,
       key: "7",
     },
   ];
@@ -106,15 +97,15 @@ const Header: React.FC = () => {
   const userMenu: MenuProps["items"] = userItems;
 
   return (
-    <nav className="flex justify-center bg-white dark:bg-gray-900 z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+    <nav className="flex justify-center bg-[#fdfcf0] z-20 top-0 left-0">
       <div className="flex flex-wrap items-center justify-between p-1 w-4/5">
         <div className="flex w-4/5">
           <NavLink to={"/home"} className="flex items-center me-2">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              E-Learning
+            <span className="self-center text-2xl font-semibold whitespace-nowrap">
+              Edemy
             </span>
           </NavLink>
-          <Dropdown className="text-lg text-white p-1" menu={{ items }}>
+          <Dropdown className="text-lg p-1" menu={{ items }}>
             <Space>
               Courses Category
               <DownOutlined />
@@ -135,28 +126,26 @@ const Header: React.FC = () => {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-sticky"
           >
-            <NavLink to={"/register"}>
-              <button
-                type="button"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-1 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Sign Up
-              </button>
-            </NavLink>
             <NavLink to={"/login"}>
-              <button
-                type="button"
-                className="ms-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-1 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              <div
+                className="font-medium text-sm p-[0.8rem] border border-solid rounded text-center md:mr-0 hover:bg-gray-200"
               >
                 Sign In
-              </button>
+              </div>
+            </NavLink>
+            <NavLink to={"/register"}>
+              <div
+                className="text-white bg-black ms-1 font-medium text-sm p-[0.8rem] rounded text-center md:mr-0 hover:bg-gray-800 "
+              >
+                Sign Up
+              </div>
             </NavLink>
           </div>
         )}
         {userInfo && (
           <div>
             <Dropdown
-              className="text-lg text-white p-1"
+              className="text-xl font-bold p-1"
               menu={{ items: userMenu }}
               trigger={["click"]}
             >
