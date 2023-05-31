@@ -1,6 +1,9 @@
 Project Edemy
+
 #Trang web, chức năng - trạng thái - người xây dựng:
+
 #Đông - Module Người dùng:
+
 1/ Lấy danh sách, tìm kiếm khóa học - trang Home - Done
 
 2/ Lấy chi tiết khóa học - trang Detail - Done
@@ -22,4 +25,5 @@ Project Edemy
 10/ Xem thông tin cá nhân trang Profile/UserInfomation
 
 #Tuấn - Module quản trị:
+
 Không làm
