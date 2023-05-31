@@ -2,9 +2,10 @@ import React from 'react';
 import { Modal } from 'antd';
 import { GetCoursesResponse } from "../services/quanLyKhoaHoc.services";
 import { LoginResponse } from "../services/quanLyNguoiDung.services";
+import { checkToken } from '../constant/api';
 
 type EnrollModalProps = {
-    selectedCourse: GetCoursesResponse | null,
+  selectedCourse: GetCoursesResponse | null,
   isModalOpen: boolean,
   handleCancel: () => void;
   handleSubmit: () => void;
@@ -18,6 +19,7 @@ const EnrollModal: React.FC<EnrollModalProps> = ({
   handleSubmit,
   userInfo,
 }) => {
+  checkToken();
   return (
     <Modal
       title={<p className="text-2xl">{selectedCourse?.tenKhoaHoc}</p>}

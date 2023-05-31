@@ -11,6 +11,7 @@ import { GetCoursesResponse } from "../services/quanLyKhoaHoc.services";
 import EnrollModal from "./EnrollModal";
 import { ToastContainer, toast } from "react-toastify";
 import { ToastMessage } from "./ToastMessage/ToastMessage";
+import { checkToken } from "../constant/api";
 
 const CroursesList: React.FC = () => {
   const { coursesList } = useSelector(

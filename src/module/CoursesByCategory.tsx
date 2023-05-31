@@ -38,7 +38,7 @@ const CoursesByCategory = () => {
     slidesToScroll: 1,
     slidesPerRow: 4,
     customPaging: (i: number) => {
-      return <span>{i + 1}</span>;
+      return <span className="hover:text-blue-500 p-1 mr-2">{i + 1}</span>;
     },
     appendDots: (dots: string) => (
       <div
@@ -49,7 +49,10 @@ const CoursesByCategory = () => {
           width: "100%",
         }}
       >
-        <ul style={{ margin: "0px", fontSize: 20 }}> {dots} </ul>
+        <ul className="" style={{ margin: "0px", fontSize: 20 }}>
+          {" "}
+          {dots}{" "}
+        </ul>
       </div>
     ),
   };
@@ -90,8 +93,8 @@ const CoursesByCategory = () => {
   };
 
   return (
-    <div className="">
-      <div className="flex justify-center py-2">
+    <div className="py-1">
+      <div className="flex justify-center pb-2">
         <div className="w-4/5">
           <Slider {...settings} className="">
             {coursesList?.map((courses, index) => (
