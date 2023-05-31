@@ -47,6 +47,8 @@ const CroursesList: React.FC = () => {
   };
 
   const handleSubmit = () => {
+    console.log(selectedCourse?.maKhoaHoc);
+    console.log(userInfo?.taiKhoan);
     dispatch(
       handleEnrollCourses({
         maKhoaHoc: selectedCourse?.maKhoaHoc,

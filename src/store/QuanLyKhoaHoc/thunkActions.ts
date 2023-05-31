@@ -70,8 +70,7 @@ export const handleEnrollCourses = createAsyncThunk(
     async (payload: EnrollCoursesRequirement, {rejectWithValue}) => {
         try{
             const res = await quanLyKhoaHocServices.EnrollCourses(payload)
-            console.log(res.data);
-            
+            // return res.status
         }catch (err){
             rejectWithValue(err)
         }

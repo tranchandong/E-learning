@@ -11,7 +11,7 @@ const TokenCyberSoft = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9
 
 let token: string = "";
 export const checkToken = () => {
-  const user = JSON.parse(localStorage.getItem("user") || "null");
+  const user = JSON.parse(localStorage.getItem("userEdemy") || "null");
   if (user === null) {
     token = "";
   } else {

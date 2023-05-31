@@ -1,5 +1,6 @@
 import { Button } from "antd";
-import React, { useEffect, useState } from "react";
+import Search from "antd/es/transfer/search";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
@@ -8,13 +9,13 @@ import { handleCancelCourses } from "../store/QuanLyKhoaHoc/thunkActions";
 import { getUserData } from "../store/QuanLyNguoiDung/thunkActions";
 
 const UserCourses = () => {
-  const { userData } = useSelector((state: RootState) => state.quanLyNguoiDung)
+  const { userData } = useSelector((state: RootState) => state.quanLyNguoiDung);
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getUserData());
-  }, [userData?.chiTietKhoaHocGhiDanh]);
+  }, [dispatch, userData?.chiTietKhoaHocGhiDanh]);
 
   const settings = {
     rows: 3,
@@ -27,7 +28,17 @@ const UserCourses = () => {
 
   return (
     <div>
-      <h1>Your Courses</h1>
+      <div className="flex justify-between">
+        <h1>Your Courses</h1>
+        <div id="search" className="flex items-center w-2/4">
+          <form className="w-full" action="">
+            <Search
+              placeholder="Find your crourses"
+              // name="search"
+            />
+          </form>
+        </div>
+      </div>
       <hr />
       <Slider {...settings}>
         {userData?.chiTietKhoaHocGhiDanh?.map((courses, index) => {
@@ -59,10 +70,12 @@ const UserCourses = () => {
                   </div>
                 </div>
                 <div className="absolute right-0 bottom-0">
-                  <Button className="text-[#ea077c] border border-[#ea077c] mr-1"
-                  onClick={() => {
-                    navigate(`/courses/${courses.tenKhoaHoc}`)
-                  }}>
+                  <Button
+                    className="text-[#ea077c] border border-[#ea077c] mr-1"
+                    onClick={() => {
+                      navigate(`/courses/${courses.tenKhoaHoc}`);
+                    }}
+                  >
                     Detail
                   </Button>
                   <Button

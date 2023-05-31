@@ -1,15 +1,19 @@
-import React from "react";
-import { Tabs } from "antd";
+import React, { useEffect } from "react";
+import { message, Tabs } from "antd";
 import type { TabsProps } from "antd";
 import UserInfomation from "../module/UserInfomation";
 import UserCourses from "../module/UserCourses";
 import { BookOutlined, UserOutlined } from "@ant-design/icons";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { useNavigate } from "react-router-dom";
 
 const Profile: React.FC = () => {
-  const { userData } = useSelector((state: RootState) => state.quanLyNguoiDung)
-
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(!localStorage.getItem("userEdemy")){
+      message.error("Please Login frist!")
+      navigate('/login')
+    }
+  })
   const items: TabsProps["items"] = [
     {
       key: "1",

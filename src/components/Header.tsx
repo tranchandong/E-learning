@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { DownOutlined } from "@ant-design/icons";
-import { Menu, MenuProps } from "antd";
+import { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
@@ -8,13 +8,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { FetchCategory } from "../store/QuanLyKhoaHoc/thunkActions";
 import { quanLyNguoiDungActions } from "../store/QuanLyNguoiDung/slice";
 import Search from "antd/es/transfer/search";
-import { checkToken } from "../constant/api";
 
 const Header: React.FC = () => {
   const { categoryList } = useSelector(
     (state: RootState) => state.quanLyKhoaHoc
   );
-  const { userInfo, status } = useSelector((state: RootState) => state.quanLyNguoiDung);
+  const { userInfo } = useSelector((state: RootState) => state.quanLyNguoiDung);
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -33,6 +32,11 @@ const Header: React.FC = () => {
   const handleSubmit = (e: any) => {
     navigate(`/${keywordRef.current}`);
   };
+
+  const handleLogout = () => {
+    dispatch(quanLyNguoiDungActions.handleLogout())
+    navigate('/home')
+  }
 
   const item = categoryList?.map((category) => ({
     key: category.maDanhMuc,
@@ -89,7 +93,7 @@ const Header: React.FC = () => {
       key: "6",
     },
     {
-      label: <p className="text-right text-red-500" onClick={() => {dispatch(quanLyNguoiDungActions.handleLogout())}}>Logout</p>,
+      label: <p className="text-right text-red-500" onClick={() => {handleLogout()}}>Logout</p>,
       key: "7",
     },
   ];

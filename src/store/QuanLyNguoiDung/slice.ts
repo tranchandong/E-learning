@@ -21,23 +21,23 @@ export const {reducer: quanLyNguoiDungReducer, actions: quanLyNguoiDungActions} 
     initialState,
     reducers: {
         getUser: (state) => {
-            const userInfo = localStorage.getItem("user");
+            const userInfo = localStorage.getItem("userEdemy");
             if (userInfo) {
                 state.userInfo = JSON.parse(userInfo);
-                message.success("ok")
             }
         },
         handleLogout: (state) => {
-            localStorage.removeItem("user");
+            localStorage.removeItem("userEdemy");
             localStorage.removeItem("token");
             state.userInfo = undefined;
+            message.success("Logout Successfully!")
         }
     },
     extraReducers(builder) {
         builder
         .addCase(handleLogin.fulfilled, (state, action) => {
             state.userInfo = action.payload
-            localStorage.setItem("user", JSON.stringify(state.userInfo));
+            localStorage.setItem("userEdemy", JSON.stringify(state.userInfo));
             checkToken()
         })
         .addCase(handleRegister.fulfilled, (state, action) => {
@@ -49,7 +49,7 @@ export const {reducer: quanLyNguoiDungReducer, actions: quanLyNguoiDungActions} 
         })
         .addCase(handleEditUser.fulfilled, (state, action) => {
             state.userDataUpdated = action.payload
-            alert("ok")
+            message.success("Update Successfully!")
         })
     },
 })

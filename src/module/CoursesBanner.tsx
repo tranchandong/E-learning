@@ -36,8 +36,6 @@ const CoursesBanner = () => {
   return (
     <div className="flex h-[500px] w-full bg-black">
       <div className="w-7/12 bg-banner bg-contain bg-no-repeat bg-center">
-        {/* <img className="w-[500px] h-[500px]" src="../../public/img/banner.webp" alt="" /> */}
-        {/* <img className="banner" src="" alt="" /> */}
       </div>
       <div className="p-1 w-5/12 relative">
         <div className="w-3/4 absolute top-1/2 transform -translate-y-1/2">

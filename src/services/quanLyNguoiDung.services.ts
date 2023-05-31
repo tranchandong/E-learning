@@ -34,7 +34,7 @@ export type GetUserDataResponse = {
         hinhAnh: string,
         ngayTao: string
         danhGia: number
-    }],
+    }] | [],
     taiKhoan: string,
     matKhau: string,
     hoTen: string,

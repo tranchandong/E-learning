@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { message } from "antd"
 import { GetFetchCategoryResponse, GetFetchCoursesDetail, GetFetchCoursesResponse } from "../../services/quanLyKhoaHoc.services"
 import { FetchCategory, FetchCouresByCategory, FetchCourses, FetchCoursesDetail, FetchSearchCourses, handleCancelCourses, handleEnrollCourses } from "./thunkActions"
 
@@ -8,6 +9,7 @@ type quanLyKhoaHocInitialState = {
     coursesList?: GetFetchCoursesResponse,
     courses?: GetFetchCoursesDetail,
     keyword?: string,
+    status?: number,
 }
 
 const initialState: quanLyKhoaHocInitialState = {
@@ -37,7 +39,10 @@ export const {reducer: quanLyKhoaHocReducer, actions: quanLyKhoaHocActions} = cr
             state.courses = action.payload
         })
         .addCase(handleEnrollCourses.fulfilled, (state, action) => {
-            alert("Enroll Successfully")            
+            // state.status = action.payload
+            if(state.status === 200){
+                message.success("Enroll Successfully!")
+            }
         })
         .addCase(handleCancelCourses.fulfilled, (state, action) => {
             alert("Cancel Successfully")

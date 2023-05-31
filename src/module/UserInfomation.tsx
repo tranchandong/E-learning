@@ -7,6 +7,7 @@ import { getUserData, } from "../store/QuanLyNguoiDung/thunkActions";
 import EditInfoModal from "./EditInfoModal";
 import { UserOutlined } from "@ant-design/icons";
 import { quanLyNguoiDungActions } from "../store/QuanLyNguoiDung/slice";
+import { checkToken } from "../constant/api";
 
 const UserInfomation: React.FC = () => {
   const { userData, userDataUpdated } = useSelector((state: RootState) => state.quanLyNguoiDung);
@@ -15,13 +16,15 @@ const UserInfomation: React.FC = () => {
 
   //State for Modal Antd
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUserValid, setIsUserValid] = useState(false);
   //End Modal Antd
 
   useEffect(() => {
     dispatch(getUserData());
-    console.log("ok");
-    
-  }, [userData, userDataUpdated]);
+    checkToken()
+    setIsUserValid(true)
+  }, [dispatch, isUserValid, userDataUpdated]);
+
 
   //Modal Antd
   const showModal = () => {

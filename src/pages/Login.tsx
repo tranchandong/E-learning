@@ -3,11 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import {
-  getUserData,
-  handleLogin,
-} from "../store/QuanLyNguoiDung/thunkActions";
-import { checkToken } from "../constant/api";
+import { handleLogin } from "../store/QuanLyNguoiDung/thunkActions";
 
 const Login: React.FC = () => {
   const { userInfo } = useSelector((state: RootState) => state.quanLyNguoiDung);
@@ -20,7 +16,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("user")) {
+    if (localStorage.getItem("userEdemy")) {
       navigate("/home");
     }
   }, [userInfo]);
